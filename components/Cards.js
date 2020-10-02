@@ -71,7 +71,7 @@ axios.get('https://lambda-times-api.herokuapp.com/articles').then(res => {
   res.data.articles.node.forEach(elem => {
     document
       .querySelector('.cards-container')
-      .appendChild(cardMaker(elem, 'node.js'));
+      .appendChild(cardMaker(elem, 'nodejs'));
   });
   res.data.articles.technology.forEach(elem => {
     document
