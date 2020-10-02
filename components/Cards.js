@@ -21,7 +21,7 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
-const cardMaker = cardObj => {
+const cardMaker = (cardObj, topic) => {
   const card = document.createElement('div');
   const headline = document.createElement('div');
   const author = document.createElement('div');
@@ -30,6 +30,7 @@ const cardMaker = cardObj => {
   const authorName = document.createElement('span');
 
   card.classList.add('card');
+  card.classList.add(topic);
   headline.classList.add('headline');
   author.classList.add('author');
   imgContainer.classList.add('img-container');
@@ -52,13 +53,29 @@ const cardMaker = cardObj => {
 };
 
 axios.get('https://lambda-times-api.herokuapp.com/articles').then(res => {
-  const allArticles = res.data.articles.bootstrap.concat(
-    res.data.articles.javascript,
-    res.data.articles.jquery,
-    res.data.articles.node,
-    res.data.articles.technology
-  );
-  allArticles.forEach(elem => {
-    document.querySelector('.cards-container').appendChild(cardMaker(elem));
+  res.data.articles.bootstrap.forEach(elem => {
+    document
+      .querySelector('.cards-container')
+      .appendChild(cardMaker(elem, 'bootstrap'));
+  });
+  res.data.articles.javascript.forEach(elem => {
+    document
+      .querySelector('.cards-container')
+      .appendChild(cardMaker(elem, 'javascript'));
+  });
+  res.data.articles.jquery.forEach(elem => {
+    document
+      .querySelector('.cards-container')
+      .appendChild(cardMaker(elem, 'jquery'));
+  });
+  res.data.articles.node.forEach(elem => {
+    document
+      .querySelector('.cards-container')
+      .appendChild(cardMaker(elem, 'node.js'));
+  });
+  res.data.articles.technology.forEach(elem => {
+    document
+      .querySelector('.cards-container')
+      .appendChild(cardMaker(elem, 'technology'));
   });
 });

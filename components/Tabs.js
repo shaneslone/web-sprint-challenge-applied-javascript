@@ -17,6 +17,13 @@ axios
       const tab = document.createElement('div');
       tab.classList.add('tab');
       tab.textContent = topic;
+      tab.addEventListener('click', () => {
+        document.querySelectorAll(`.${topic}`).forEach(elem => {
+          console.log(elem);
+          elem.classList.toggle('hidden');
+        });
+      });
+
       return tab;
     };
 
