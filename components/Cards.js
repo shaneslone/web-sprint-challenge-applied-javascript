@@ -52,19 +52,13 @@ const cardMaker = cardObj => {
 };
 
 axios.get('https://lambda-times-api.herokuapp.com/articles').then(res => {
-  res.data.articles.bootstrap.forEach(elem => {
-    document.querySelector('.cards-container').appendChild(cardMaker(elem));
-  });
-  res.data.articles.javascript.forEach(elem => {
-    document.querySelector('.cards-container').appendChild(cardMaker(elem));
-  });
-  res.data.articles.jquery.forEach(elem => {
-    document.querySelector('.cards-container').appendChild(cardMaker(elem));
-  });
-  res.data.articles.node.forEach(elem => {
-    document.querySelector('.cards-container').appendChild(cardMaker(elem));
-  });
-  res.data.articles.technology.forEach(elem => {
+  const allArticles = res.data.articles.bootstrap.concat(
+    res.data.articles.javascript,
+    res.data.articles.jquery,
+    res.data.articles.node,
+    res.data.articles.technology
+  );
+  allArticles.forEach(elem => {
     document.querySelector('.cards-container').appendChild(cardMaker(elem));
   });
 });
